@@ -1,0 +1,77 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/main/schemas/manifest.v2.schema.json
+
+packaging_format = 2
+
+id = "filebrowser-quantum"
+name = "FileBrowser Quantum"
+description.en = "Web File Browser"
+description.fr = "Navigateur de fichiers Web"
+
+version = "1.1.0~ynh1"
+
+maintainers = ["eric_G"]
+
+[upstream]
+license = "Apache-2.0"
+admindoc = "https://filebrowserquantum.com/en/docs/getting-started/linux/"
+code = "https://github.com/gtsteffaniak/filebrowser"
+
+[integration]
+yunohost = ">= 12.1.17"
+helpers_version = "2.1"
+architectures = ["amd64", "arm64"]
+multi_instance = true
+
+ldap = false
+sso = false
+
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+    
+    [install.path]
+    type = "path"
+    default = "/filebrowser"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+    [install.admin]
+    type = "user"
+
+    [install.password]
+    type = "password"
+
+[resources]
+
+    [resources.sources]
+
+    [resources.sources.main]
+    in_subdir = false
+    rename = "filebrowser"
+    extract = false
+    amd64.url = "https://github.com/gtsteffaniak/filebrowser/releases/download/v1.1.0-stable/linux-amd64-filebrowser"
+    amd64.sha256 = "6155b03cb9fcaccd158577c91a6d92858aa6bfbb128b6e9b3222e7a284d55b7c"
+    arm64.url = "https://github.com/gtsteffaniak/filebrowser/releases/download/v1.1.0-stable/linux-arm64-filebrowser"
+    arm64.sha256 = "368eb74fda250d8380809e112c7f572c3175c578b7b48cadb06adfc652694bfd"
+
+    autoupdate.strategy = "latest_github_release"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.data_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.ports]
+
+    [resources.apt]
+    packages = "ffmpeg"
