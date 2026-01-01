@@ -8,6 +8,7 @@ User=__APP__
 Group=__APP__
 WorkingDirectory=__INSTALL_DIR__/
 ExecStart=__INSTALL_DIR__/filebrowser -c __INSTALL_DIR__/config.yaml
+StandardOutput=append:/var/log/__APP__/__APP__.log
 Restart=on-failure
 
 # Sandboxing options to harden security
