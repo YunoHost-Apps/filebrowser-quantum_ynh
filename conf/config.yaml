@@ -14,7 +14,7 @@ server:
   logging:
     - levels: ""                          # separated list of log levels to enable. (eg. "info|warning|error|debug")
       apiLevels: "error"                  # separated list of log levels to enable for the API. (eg. "info|warning|error")
-      output: "stdout"                    # output location. (eg. "stdout" or "path/to/file.log")
+      output: "/var/log/__APP__/__APP__.log"  # output location. (eg. "stdout" or "path/to/file.log")
       noColors: false                     # disable colors in the output
       json: false                         # output in json format
       utc: false                          # use UTC time in the output instead of local time
