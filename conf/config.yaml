@@ -12,7 +12,7 @@ server:
   listen: "127.0.0.1"                     # address to listen on (default: 127.0.0.1)
   baseURL: "/"                            # base URL for the server, the subpath that the server is running on.
   logging:
-    - levels: ""                          # separated list of log levels to enable. (eg. "info|warning|error|debug")
+    - levels: "warning"                   # separated list of log levels to enable. (eg. "info|warning|error|debug")
       apiLevels: "error"                  # separated list of log levels to enable for the API. (eg. "info|warning|error")
       output: "/var/log/__APP__/__APP__.log"  # output location. (eg. "stdout" or "path/to/file.log")
       noColors: false                     # disable colors in the output
