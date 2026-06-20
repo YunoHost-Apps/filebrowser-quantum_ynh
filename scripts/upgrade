@@ -25,9 +25,13 @@ chmod +x "$install_dir/filebrowser"
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
-#ynh_script_progression "Updating $app's configuration files..."
 
-ynh_config_add --template="config.yaml" --destination="$install_dir/config.yaml"
+if ynh_app_upgrading_from_version_before_or_equal_to 1.4.0~ynh1; then
+  ynh_script_progression "Updating $app's configuration files..."
+  ynh_replace --match="indexingIntervalMinutes:" --replace="#indexingIntervalMinutes:" --file="$install_dir/config.yaml"
+  ynh_replace --match="disableIndexing:" --replace="#disableIndexing:" --file="$install_dir/config.yaml"
+  ynh_store_file_checksum "$install_dir/config.yaml"
+fi
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATION
