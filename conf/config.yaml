@@ -26,8 +26,6 @@ server:
         denyByDefault: false              # deny access unless an "allow" access rule was specifically created.
         private: false                    # designate as source as private -- currently just means no sharing permitted.
         disabled: false                   # disable the source, this is useful so you don't need to remove it from the config file
-        indexingIntervalMinutes: 0        # (optional) not recommended: manual overide interval in minutes to re-index the source
-        disableIndexing: false            # (optional) not recommended: disable the indexing of this source
         conditionals:                     # conditional rules to apply when indexing to include/exclude certain items
           ignoreHidden: false             # exclude hidden files and folders.
           ignoreZeroSizeFolders: false    # ignore folders with 0 size
