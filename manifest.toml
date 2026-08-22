@@ -7,7 +7,7 @@ name = "FileBrowser Quantum"
 description.en = "Web File Browser"
 description.fr = "Navigateur de fichiers Web"
 
-version = "1.5.2~ynh1"
+version = "1.5.3~ynh1"
 
 maintainers = ["eric_G"]
 
@@ -51,12 +51,12 @@ ram.runtime = "100M"
     in_subdir = false
     rename = "filebrowser"
     extract = false
-    amd64.url = "https://github.com/gtsteffaniak/filebrowser/releases/download/v1.5.2-stable/linux-amd64-filebrowser"
-    amd64.sha256 = "2cc7c2e39fc24831578fdb4da02c5dfeb39669203fc8c6d6bfbbfa35577f5173"
-    arm64.url = "https://github.com/gtsteffaniak/filebrowser/releases/download/v1.5.2-stable/linux-arm64-filebrowser"
-    arm64.sha256 = "5194e8cca5c74705afbd9696dda7d0279ddaf9d04c3c39f18f956d646ada3b64"
-    armhf.url = "https://github.com/gtsteffaniak/filebrowser/releases/download/v1.5.2-stable/linux-armv7-filebrowser"
-    armhf.sha256 = "7bbcb917eaaabe2d94f920b851844049ecc9450e1280a076ddf95da32e196e76"
+    amd64.url = "https://github.com/gtsteffaniak/filebrowser/releases/download/v1.5.3-stable/linux-amd64-filebrowser"
+    amd64.sha256 = "cb7ddce34fefc5f5682c986a8536ff09ec9dafea1f1bc0456ea86219eb9023a5"
+    arm64.url = "https://github.com/gtsteffaniak/filebrowser/releases/download/v1.5.3-stable/linux-arm64-filebrowser"
+    arm64.sha256 = "a62c3fd586456fdee16fb44c7697425c5e231f69a00d1382de7e2615076cbb1f"
+    armhf.url = "https://github.com/gtsteffaniak/filebrowser/releases/download/v1.5.3-stable/linux-armv7-filebrowser"
+    armhf.sha256 = "470673b9d408bf3c66e159f039a49e0b4baf003d4ba37b5e20a4bc0ceda7e6f7"
     autoupdate.strategy = "latest_github_release"
     autoupdate.version_regex = "v(\\d+\\.\\d+\\.\\d+)-stable"
     autoupdate.asset.amd64 = "linux-amd64-filebrowser"
