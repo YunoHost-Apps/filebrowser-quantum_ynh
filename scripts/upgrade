@@ -40,7 +40,8 @@ if ynh_app_upgrading_from_version_before 2.0.2~ynh1; then
 
   migrate="# "
   ynh_app_setting_set --key=migrate --value=$migrate
-
+  ynh_config_add --template="config.yaml" --destination="$install_dir/config.yaml"
+  ynh_safe_rm "$install_dir/database.db.old"
 elif ynh_app_upgrading_from_version_before_or_equal_to 1.4.0~ynh1; then
   ynh_script_progression "Updating $app's configuration files..."
   ynh_replace --match="indexingIntervalMinutes:" --replace="#indexingIntervalMinutes:" --file="$install_dir/config.yaml"
