@@ -31,6 +31,7 @@ if ynh_app_upgrading_from_version_before 2.0.2~ynh1; then
   migrate=""
   cp "$install_dir/config.yaml" "$install_dir/config.yaml.bak"
   mv "$install_dir/database.db" "$install_dir/database.db.old"
+  password=$(ynh_app_setting_get --key=password)
   ynh_config_add --template="config.yaml" --destination="$install_dir/config.yaml"
 
   ynh_script_progression "Running migrations..."
