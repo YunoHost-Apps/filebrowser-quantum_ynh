@@ -8,7 +8,7 @@ server:
   disablePreviewResize: false
   disableTypeDetectionByHeader: false
   logging:
-    - levels: "warning"
+    - levels: "info"
       apiLevels: "error"
       output: "/var/log/__APP__/__APP__.log"
       noColors: false
