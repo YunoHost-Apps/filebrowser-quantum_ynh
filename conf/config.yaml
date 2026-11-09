@@ -163,8 +163,6 @@ userDefaults:
       api: false
       share: false
       realtime: false
-  preview:
-    defaultMediaPlayer: false
 
 integrations:
   office:
