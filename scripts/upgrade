@@ -28,7 +28,7 @@ chmod +x "$install_dir/filebrowser"
 
 if ynh_app_upgrading_from_version_before 2.0.2~ynh1; then
   ynh_script_progression "Migrating to 2.x..."
-  migrate=''
+  migrate=""
   cp "$install_dir/config.yaml" "$install_dir/config.yaml.bak"
   mv "$install_dir/database.db" "$install_dir/database.db.old"
   ynh_config_add --template="config.yaml" --destination="$install_dir/config.yaml"
@@ -37,7 +37,8 @@ if ynh_app_upgrading_from_version_before 2.0.2~ynh1; then
   ynh_systemctl --service="$app" --action="start" --wait_until="Running at"
   ynh_systemctl --service="$app" --action="stop" --wait_until="Shutdown complete."
 
-  ynh_app_setting_set --key=migrate --value="# "
+  migrate="# "
+  ynh_app_setting_set --key=migrate --value=$migrate
 
 elif ynh_app_upgrading_from_version_before_or_equal_to 1.4.0~ynh1; then
   ynh_script_progression "Updating $app's configuration files..."

@@ -16,7 +16,8 @@ ynh_setup_source --dest_dir="$install_dir"
 
 chmod +x "$install_dir/filebrowser"
 
-ynh_app_setting_set --key=migrate --value='# '
+migrate="# "
+ynh_app_setting_set --key=migrate --value=$migrate
 
 #=================================================
 # APP INITIAL CONFIGURATION
