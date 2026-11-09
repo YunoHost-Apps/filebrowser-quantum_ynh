@@ -148,7 +148,6 @@ userDefaults:
     disableViewingExt: ""
     disableOnlyOfficeExt: ".md .txt .pdf .html .xml"
     autoplayMedia: true
-    defaultMediaPlayer: false
   ui:
     darkMode: true
     themeColor: "var(--blue)"
@@ -164,6 +163,9 @@ userDefaults:
       api: false
       share: false
       realtime: false
+  preview:
+    defaultMediaPlayer: false
+
 integrations:
   office:
     url: ""
