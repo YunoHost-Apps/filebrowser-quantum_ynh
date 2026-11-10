@@ -11,14 +11,14 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="stop"
+ynh_systemctl --service="$app" --action="stop" --wait_until="Shutdown complete."
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
-ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="config.yaml"
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="config.yaml database.db filebrowser.sqlite"
 
 chmod +x "$install_dir/filebrowser"
 
@@ -26,7 +26,27 @@ chmod +x "$install_dir/filebrowser"
 # UPDATE A CONFIG FILE
 #=================================================
 
-if ynh_app_upgrading_from_version_before_or_equal_to 1.4.0~ynh1; then
+if ynh_app_upgrading_from_version_before 2.0.2~ynh1; then
+  ynh_script_progression "Migrating to 2.x..."
+  migrate=""
+  cp "$install_dir/config.yaml" "$install_dir/config.yaml.bak"
+  mv "$install_dir/database.db" "$install_dir/database.db.old"
+  password=$(ynh_app_setting_get --key=password)
+  ynh_config_add --template="config.yaml" --destination="$install_dir/config.yaml"
+  
+  mkdir -p /var/log/$app
+  touch /var/log/$app/$app.log
+  chown -R $app /var/log/$app
+
+  ynh_script_progression "Running migrations..."
+  ynh_systemctl --service="$app" --action="start" --wait_until="Running at"
+  ynh_systemctl --service="$app" --action="stop" --wait_until="Shutdown complete."
+
+  migrate="# "
+  ynh_app_setting_set --key=migrate --value=$migrate
+  ynh_config_add --template="config.yaml" --destination="$install_dir/config.yaml"
+  ynh_safe_rm "$install_dir/database.db.old"
+elif ynh_app_upgrading_from_version_before_or_equal_to 1.4.0~ynh1; then
   ynh_script_progression "Updating $app's configuration files..."
   ynh_replace --match="indexingIntervalMinutes:" --replace="#indexingIntervalMinutes:" --file="$install_dir/config.yaml"
   ynh_replace --match="disableIndexing:" --replace="#disableIndexing:" --file="$install_dir/config.yaml"
@@ -51,7 +71,7 @@ ynh_config_add_logrotate
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="start"
+ynh_systemctl --service="$app" --action="start" --wait_until="Running at"
 
 #=================================================
 # END OF SCRIPT
