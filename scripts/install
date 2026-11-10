@@ -16,6 +16,9 @@ ynh_setup_source --dest_dir="$install_dir"
 
 chmod +x "$install_dir/filebrowser"
 
+migrate="# "
+ynh_app_setting_set --key=migrate --value=$migrate
+
 #=================================================
 # APP INITIAL CONFIGURATION
 #=================================================
@@ -52,7 +55,7 @@ ynh_config_add_logrotate
 ynh_script_progression "Starting $app's systemd service..."
 
 # Start a systemd service
-ynh_systemctl --service="$app" --action="start"
+ynh_systemctl --service="$app" --action="start" --wait_until="Running at"
 
 #=================================================
 # END OF SCRIPT
